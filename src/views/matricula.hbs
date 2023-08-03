@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Encuesta de Carrera</title>
+  <style>
+    /* Estilos CSS para el contenedor principal */
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    /* Estilos CSS para la sección de materias */
+    .materias {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .materias-container {
+      display: flex;
+      gap: 10px;
+    }
+
+    .materia {
+      border: 1px solid #ccc;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    .materia button {
+      margin-top: 5px;
+    }
+
+    /* Estilos CSS para la sección de materias matriculadas */
+    .materias-matriculadas {
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div>
+      <h1>Encuesta de Carrera</h1>
+      <label for="carrera">Carrera:</label>
+      <select id="carrera" name="carrera">
+        <!-- Opciones de carreras -->
+        <option value="Ingeniería electrónica">Ingeniería electrónica</option>
+        <option value="Medicina">Medicina</option>
+        <option value="Administración de Empresas">Administración de Empresas</option>
+        <option value="Biología">Biología</option>
+        <option value="Derecho">Derecho</option>
+      </select>
+
+       <label for="semestre">Semestre:</label>
+      <select id="semestre" name="semestre" required>
+         <!-- Opciones de semestres -->
+       <option value="Semestre 1">Semestre 1</option>
+       <option value="Semestre 2">Semestre 2</option>
+       <option value="Semestre 3">Semestre 3</option>
+      <option value="Semestre 4">Semestre 4</option>
+       <option value="Semestre 5">Semestre 5</option>
+      </select>
+
+
+      <button type="button" onclick="mostrarMaterias()">Mostrar Materias</button>
+
+      <!-- Contenedor donde se mostrarán las materias -->
+      <div class="materias-container" id="materiasContainer"></div>
+
+      <!-- Botón para guardar las materias -->
+      <button type="button" onclick="guardarMatricula()">Guardar</button>
+
+      <div class="materias-container">
+        <div class="materias" id="materiasMatriculadas"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function mostrarMaterias() {
+      const carrera = document.getElementById('carrera').value;
+      const semestre = document.getElementById('semestre').value;
+      const materiasContainer = document.getElementById('materiasContainer');
+      const materiasMatriculadas = document.getElementById('materiasMatriculadas');
+
+      // Definir las materias por carrera y semestre
+      let materias = [];
+      if (carrera === "Ingeniería electrónica") {
+        if (semestre === "Semestre 1") {
+          materias = ["Circuitos Electrónicos", "Programación de Microcontroladores", "Matemáticas Avanzadas", "Física Electrónica", "Sistemas Digitales"];
+        } else if (semestre === "Semestre 2") {
+          materias = ["Electrónica de Potencia", "Comunicaciones Electrónicas", "Señales y Sistemas", "Microprocesadores", "Control Automático"];
+        } else if (semestre === "Semestre 3") {
+          materias = ["Electrónica Analógica", "Electrónica Digital", "Telecomunicaciones", "Instrumentación Electrónica", "Sistemas Embebidos"];
+        } else if (semestre === "Semestre 4") {
+          materias = ["Electrónica de Comunicaciones", "Electrónica Industrial", "Redes de Datos", "Procesamiento Digital de Señales", "Robótica"];
+        } else if (semestre === "Semestre 5") {
+          materias = ["Sistemas de Comunicación", "Electrónica Avanzada", "Redes Inalámbricas", "Electrónica de Potencia Avanzada", "Inteligencia Artificial"];
+        }
+      } else if (carrera === "Medicina") {
+        if (semestre === "Semestre 1") {
+          materias = ["Anatomía", "Fisiología", "Bioquímica", "Histología", "Embriología"];
+        } else if (semestre === "Semestre 2") {
+          materias = ["Farmacología", "Patología General", "Microbiología", "Inmunología", "Parasitología"];
+        } else if (semestre === "Semestre 3") {
+          materias = ["Patología Especial", "Bioética", "Genética Médica", "Epidemiología", "Medicina Preventiva"];
+        } else if (semestre === "Semestre 4") {
+          materias = ["Medicina Interna", "Cirugía", "Pediatría", "Ginecología", "Obstetricia"];
+        } else if (semestre === "Semestre 5") {
+          materias = ["Psiquiatría", "Radiología", "Dermatología", "Oftalmología", "Otorrinolaringología"];
+        }
+      } else if (carrera === "Administración de Empresas") {
+        if (semestre === "Semestre 1") {
+          materias = ["Introducción a la Administración", "Matemáticas para la Administración", "Introducción al Derecho", "Economía", "Contabilidad"];
+        } else if (semestre === "Semestre 2") {
+          materias = ["Estadística Aplicada", "Finanzas", "Marketing", "Gestión de Recursos Humanos", "Administración de Operaciones"];
+        } else if (semestre === "Semestre 3") {
+          materias = ["Comportamiento Organizacional", "Gestión Estratégica", "Derecho Empresarial", "Gestión de la Calidad", "Administración de Proyectos"];
+        } else if (semestre === "Semestre 4") {
+          materias = ["Negociación", "Dirección de Equipos de Trabajo", "Comunicación Empresarial", "Logística y Distribución", "Mercadotecnia Estratégica"];
+        } else if (semestre === "Semestre 5") {
+          materias = ["Ética Empresarial", "Sistemas de Información Gerencial", "Consultoría Empresarial", "Responsabilidad Social Corporativa", "Emprendimiento"];
+        }
+      } else if (carrera === "Biología") {
+        if (semestre === "Semestre 1") {
+          materias = ["Biología Celular", "Química General", "Álgebra", "Estadística", "Introducción a la Biología"];
+        } else if (semestre === "Semestre 2") {
+          materias = ["Microbiología", "Química Orgánica", "Cálculo Integral", "Genética", "Biología Molecular"];
+        } else if (semestre === "Semestre 3") {
+          materias = ["Fisiología Vegetal", "Fisiología Animal", "Bioquímica", "Ecología", "Biología del Desarrollo"];
+        } else if (semestre === "Semestre 4") {
+          materias = ["Biología Evolutiva", "Biología Molecular Avanzada", "Biotecnología", "Botánica", "Zoología"];
+        } else if (semestre === "Semestre 5") {
+          materias = ["Biología Marina", "Biología Celular Avanzada", "Microbiología Avanzada", "Biología Ambiental", "Biología Humana"];
+        }
+      } else if (carrera === "Derecho") {
+        if (semestre === "Semestre 1") {
+          materias = ["Introducción al Derecho", "Derecho Romano", "Teoría General del Proceso", "Sociología Jurídica", "Filosofía del Derecho"];
+        } else if (semestre === "Semestre 2") {
+          materias = ["Derecho Civil", "Derecho Constitucional", "Derecho Penal", "Derecho Administrativo", "Derecho Internacional Público"];
+        } else if (semestre === "Semestre 3") {
+          materias = ["Derecho Laboral", "Derecho Mercantil", "Derecho Internacional Privado", "Derecho Procesal Civil", "Derecho Procesal Penal"];
+        } else if (semestre === "Semestre 4") {
+          materias = ["Derecho Financiero", "Derecho de la Seguridad Social", "Derecho Notarial", "Derecho Procesal Laboral", "Derecho Procesal Administrativo"];
+        } else if (semestre === "Semestre 5") {
+          materias = ["Derecho Tributario", "Derecho de Familia", "Derecho Procesal Constitucional", "Derecho Ambiental", "Derecho de la Propiedad Intelectual"];
+        }
+      }
+
+      // Generar la lista de materias
+      materiasContainer.innerHTML = ''; // Limpiar el contenido existente
+
+      if (materias.length > 0) {
+        materias.forEach((materia) => {
+          const materiaElement = document.createElement('div');
+          materiaElement.classList.add('materia');
+          materiaElement.textContent = materia;
+          const matricularButton = document.createElement('button');
+          matricularButton.textContent = 'Matricular';
+          matricularButton.addEventListener('click', () => {
+            matricularMateria(materia);
+          });
+          materiaElement.appendChild(matricularButton);
+          materiasContainer.appendChild(materiaElement);
+        });
+      } else {
+        const noMateriasMessage = document.createElement('p');
+        noMateriasMessage.textContent = 'No se encontraron materias para el semestre seleccionado.';
+        materiasContainer.appendChild(noMateriasMessage);
+      }
+    }
+
+    function matricularMateria(materia) {
+      const materiasMatriculadas = document.getElementById('materiasMatriculadas');
+      const materiaElement = document.createElement('div');
+      materiaElement.classList.add('materia');
+      materiaElement.textContent = materia;
+      materiasMatriculadas.appendChild(materiaElement);
+    }
+    function guardarMatricula() {
+      const materiasMatriculadas = Array.from(document.querySelectorAll('.materias-matriculadas .materia')).map(element => element.textContent);
+      const carrera = document.getElementById('carrera').value;
+      const semestre = document.getElementById('semestre').value;
+
+      fetch('/guardarmatricula', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ carrera, semestre, materias: materiasMatriculadas })
+      })
+      .then(response => response.json())
+      .then(data => {
+        alert(data.message);
+      })
+      .catch(error => {
+        console.error('Hubo un error al guardar las materias:', error);
+        alert('Hubo un error al guardar las materias.');
+      });
+    }
+  </script>
+</body>
+</html>
+
+  

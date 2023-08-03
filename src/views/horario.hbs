@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Encuesta de Carrera</title>
+  <style>
+    /* Estilos CSS para el horario */
+    .horario {
+      display: grid;
+      grid-template-columns: 100px repeat(5, 1fr);
+      grid-template-rows: repeat(12, 1fr);
+      gap: 1px;
+      border: 1px solid black;
+    }
+
+    .horario div {
+      border: 1px solid black;
+      padding: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Encuesta de Carrera</h1>
+  <form action="/guardarhorario" method="POST" id="horarioform">
+    <label for="carrera">Carrera:</label>
+    <select id="carrera" name="carrera"> <!-- Agregamos el atributo "name" -->
+      <option value="Ingeniería electrónica">Ingeniería electrónica</option>
+      <option value="Medicina">Medicina</option>
+      <option value="Administración de Empresas">Administración de Empresas</option>
+      <option value="Biología">Biología</option>
+      <option value="Derecho">Derecho</option>
+    </select>
+
+    <label for="semestre">Semestre:</label>
+    <select id="semestre" name="semestre"> <!-- Agregamos el atributo "name" -->
+      <option value="Semestre 1">Semestre 1</option>
+      <option value="Semestre 2">Semestre 2</option>
+      <option value="Semestre 3">Semestre 3</option>
+      <option value="Semestre 4">Semestre 4</option>
+      <option value="Semestre 5">Semestre 5</option>
+    </select>
+
+    <button type="submit">Mostrar Horario</button> <!-- Cambiamos el tipo a "submit" -->
+  </form>
+
+  <div id="horarioContainer"></div>
+
+  <script>
+    function mostrarHorario(event) {
+      event.preventDefault(); // Evitamos el envío del formulario por defecto
+      const carrera = document.getElementById('carrera').value;
+      const semestre = document.getElementById('semestre').value;
+      const horarioContainer = document.getElementById('horarioContainer');
+
+      // Definir las materias por carrera y semestre
+      let materias = [];
+      if (carrera === "Ingeniería electrónica") {
+        if (semestre === "Semestre 1") {
+          materias = ["Circuitos Electrónicos", "Programación de Microcontroladores", "Matemáticas Avanzadas", "Física Electrónica", "Sistemas Digitales"];
+        } else if (semestre === "Semestre 2") {
+          materias = ["Electrónica de Potencia", "Comunicaciones Electrónicas", "Señales y Sistemas", "Microprocesadores", "Control Automático"];
+        } else if (semestre === "Semestre 3") {
+          materias = ["Electrónica Analógica", "Electrónica Digital", "Telecomunicaciones", "Instrumentación Electrónica", "Sistemas Embebidos"];
+        } else if (semestre === "Semestre 4") {
+          materias = ["Electrónica de Comunicaciones", "Electrónica Industrial", "Redes de Datos", "Procesamiento Digital de Señales", "Robótica"];
+        } else if (semestre === "Semestre 5") {
+          materias = ["Sistemas de Comunicación", "Electrónica Avanzada", "Redes Inalámbricas", "Electrónica de Potencia Avanzada", "Inteligencia Artificial"];
+        }
+      } else if (carrera === "Medicina") {
+        if (semestre === "Semestre 1") {
+          materias = ["Anatomía", "Fisiología", "Bioquímica", "Histología", "Embriología"];
+        } else if (semestre === "Semestre 2") {
+          materias = ["Farmacología", "Patología General", "Microbiología", "Inmunología", "Parasitología"];
+        } else if (semestre === "Semestre 3") {
+          materias = ["Patología Especial", "Bioética", "Genética Médica", "Epidemiología", "Medicina Preventiva"];
+        } else if (semestre === "Semestre 4") {
+          materias = ["Medicina Interna", "Cirugía", "Pediatría", "Ginecología", "Obstetricia"];
+        } else if (semestre === "Semestre 5") {
+          materias = ["Psiquiatría", "Radiología", "Dermatología", "Oftalmología", "Otorrinolaringología"];
+        }
+      } else if (carrera === "Administración de Empresas") {
+        if (semestre === "Semestre 1") {
+          materias = ["Introducción a la Administración", "Matemáticas para la Administración", "Introducción al Derecho", "Economía", "Contabilidad"];
+        } else if (semestre === "Semestre 2") {
+          materias = ["Estadística Aplicada", "Finanzas", "Marketing", "Gestión de Recursos Humanos", "Administración de Operaciones"];
+        } else if (semestre === "Semestre 3") {
+          materias = ["Comportamiento Organizacional", "Gestión Estratégica", "Derecho Empresarial", "Gestión de la Calidad", "Administración de Proyectos"];
+        } else if (semestre === "Semestre 4") {
+          materias = ["Negociación", "Dirección de Equipos de Trabajo", "Comunicación Empresarial", "Logística y Distribución", "Mercadotecnia Estratégica"];
+        } else if (semestre === "Semestre 5") {
+          materias = ["Ética Empresarial", "Sistemas de Información Gerencial", "Consultoría Empresarial", "Responsabilidad Social Corporativa", "Emprendimiento"];
+        }
+      } else if (carrera === "Biología") {
+        if (semestre === "Semestre 1") {
+          materias = ["Biología Celular", "Química General", "Álgebra", "Estadística", "Introducción a la Biología"];
+        } else if (semestre === "Semestre 2") {
+          materias = ["Microbiología", "Química Orgánica", "Cálculo Integral", "Genética", "Biología Molecular"];
+        } else if (semestre === "Semestre 3") {
+          materias = ["Fisiología Vegetal", "Fisiología Animal", "Bioquímica", "Ecología", "Biología del Desarrollo"];
+        } else if (semestre === "Semestre 4") {
+          materias = ["Biología Evolutiva", "Biología Molecular Avanzada", "Biotecnología", "Botánica", "Zoología"];
+        } else if (semestre === "Semestre 5") {
+          materias = ["Biología Marina", "Biología Celular Avanzada", "Microbiología Avanzada", "Biología Ambiental", "Biología Humana"];
+        }
+      } else if (carrera === "Derecho") {
+        if (semestre === "Semestre 1") {
+          materias = ["Introducción al Derecho", "Derecho Romano", "Teoría General del Proceso", "Sociología Jurídica", "Filosofía del Derecho"];
+        } else if (semestre === "Semestre 2") {
+          materias = ["Derecho Civil", "Derecho Constitucional", "Derecho Penal", "Derecho Administrativo", "Derecho Internacional Público"];
+        } else if (semestre === "Semestre 3") {
+          materias = ["Derecho Laboral", "Derecho Mercantil", "Derecho Internacional Privado", "Derecho Procesal Civil", "Derecho Procesal Penal"];
+        } else if (semestre === "Semestre 4") {
+          materias = ["Derecho Financiero", "Derecho de la Seguridad Social", "Derecho Notarial", "Derecho Procesal Laboral", "Derecho Procesal Administrativo"];
+        } else if (semestre === "Semestre 5") {
+          materias = ["Derecho Tributario", "Derecho de Familia", "Derecho Procesal Constitucional", "Derecho Ambiental", "Derecho de la Propiedad Intelectual"];
+        }
+      }
+
+      // Generar el horario
+      const diasSemana = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"];
+      const horasDia = ["6 am", "7 am", "8 am", "9 am", "10 am", "11 am", "12 pm", "1 pm", "2 pm", "3 pm", "4 pm", "5 pm", "6 pm"];
+
+      const horario = document.createElement('div');
+      horario.className = "horario";
+
+    // Generar las celdas del horario
+      for (let i = 0; i < horasDia.length; i++) {
+        for (let j = 0; j < diasSemana.length; j++) {
+          const celda = document.createElement('div');
+          if (i === 0) {
+            // Mostrar los nombres de los días en la primera fila
+            celda.textContent = diasSemana[j];
+            celda.style.fontWeight = "bold";
+          } else if (j === 0) {
+            // Mostrar las horas en la primera columna
+            celda.textContent = horasDia[i];
+            celda.style.fontWeight = "bold";
+          } else {
+            // Mostrar las materias correspondientes en el horario
+            const materia = materias[(i - 1) * (diasSemana.length - 1) + (j - 1)] || "";
+            celda.textContent = materia;
+          }
+          horario.appendChild(celda);
+        }
+      }
+
+      // Limpiar el contenedor antes de mostrar el nuevo horario
+      horarioContainer.innerHTML = "";
+      horarioContainer.appendChild(horario);
+    }
+  document.getElementById('horarioform').addEventListener('submit', mostrarHorario);
+  </script>
+</body>
+</html>
+
+
+<div class="col-md-4 mx-auto">
+  <div class="card text-center">
+    <div class="card-header">
+      <h3>Encuesta Universitaria</h3>
+    </div>
+    <div class="card-body">
+      <form action="guardahorario" method="POST" id="horarioForm">
+        <div class="form-group">
+          <input type="text" name="hora" class="form-control" placeholder="hora" autofocus />
+        </div>
+        <div class="form-group">
+          <input type="text" name="dia" class="form-control" placeholder="dia" />
+        </div>
+        <div class="form-group">
+          <input type="text" name="materia" class="form-control" placeholder="materia" />
+        </div>
+        <div class="form-group">
+        <input type="text" name="salon" class="form-control" placeholder="salon" />
+        </div>
+       
+       
+       
+
+        <div cl ass="form-group">
+          <button class="btn btn-block" style="background-color: #B0E57C; color: #fff;" type="submit">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>

@@ -1,0 +1,56 @@
+<div class="col-md-4 mx-auto">
+  <div class="card text-center">
+    <div class="card-header">
+      <h3>Encuesta Universitaria</h3>
+    </div>
+    <div class="card-body">
+      <form action="/guardarencuesta" method="POST" id="encuestaForm">
+        <div class="form-group">
+          <input type="text" name="nombre" class="form-control" placeholder="nombre" autofocus />
+        </div>
+        <div class="form-group">
+          <input type="text" name="identificacion" class="form-control" placeholder="Identificación" />
+        </div>
+        <div class="form-group">
+          <label for="carrera_universitaria">Seleccione Carrera:</label>
+          <select name="carrera_universitaria" class="form-control" id="carrera_universitaria" onchange="mostrarSensoresAdicionales()">
+            <option value="0">Seleccione</option>
+            <option value="Ingenieria electronica">Ingenieria electronica</option>
+            <option value="Medicina">Medicina</option>
+            <option value="Administracion de Empresa">Administracion de Empresa</option>
+            <option value="Biologia">Biologia</option>
+            <option value="Derecho">Derecho</option>
+            <!-- Agrega más opciones si es necesario -->
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="semestre">Seleccione semestre:</label>
+          <select name="semestre" class="form-control" id="semestre" onchange="mostrarSensoresAdicionales()">
+            <option value="0">Seleccione</option>
+            <option value="semestre1">semestre1</option>
+            <option value="semestre2">semestre2</option>
+            <option value="semestre3">semestre3</option>
+            <option value="semestre4">semestre4</option>
+            <option value="semestre5">semestre4</option>
+
+            <!-- Agrega más opciones si es necesario -->
+          </select>
+        </div>
+       
+       
+
+        <div cl ass="form-group">
+          <button class="btn btn-block" style="background-color: #B0E57C; color: #fff;" type="submit">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
